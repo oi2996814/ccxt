@@ -107049,6 +107049,7 @@ class bybit extends _abstract_bybit_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"
      * @param {string} address the address to withdraw to
      * @param {string} tag
      * @param {object} [params] extra parameters specific to the exchange API endpoint
+     * @param {string} [params.accountType] 'UTA', 'FUND', 'FUND,UTA', and 'SPOT (for classic accounts only)
      * @returns {object} a [transaction structure]{@link https://docs.ccxt.com/#/?id=transaction-structure}
      */
     async withdraw(code, amount, address, tag = undefined, params = {}) {
@@ -107056,9 +107057,9 @@ class bybit extends _abstract_bybit_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"
         let accountType = undefined;
         const accounts = await this.isUnifiedEnabled();
         const isUta = accounts[1];
-        [accountType, params] = this.handleOptionAndParams(params, 'withdraw', 'accountType', 'SPOT');
-        if (isUta) {
-            accountType = 'UTA';
+        [accountType, params] = this.handleOptionAndParams(params, 'withdraw', 'accountType');
+        if (accountType === undefined) {
+            accountType = isUta ? 'UTA' : 'SPOT';
         }
         await this.loadMarkets();
         this.checkAddress(address);
