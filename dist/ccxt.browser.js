@@ -248322,6 +248322,7 @@ class okx extends _abstract_okx_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */
                     '51031': _base_errors_js__WEBPACK_IMPORTED_MODULE_1__.InvalidOrder,
                     '51046': _base_errors_js__WEBPACK_IMPORTED_MODULE_1__.InvalidOrder,
                     '51047': _base_errors_js__WEBPACK_IMPORTED_MODULE_1__.InvalidOrder,
+                    '51051': _base_errors_js__WEBPACK_IMPORTED_MODULE_1__.InvalidOrder,
                     '51072': _base_errors_js__WEBPACK_IMPORTED_MODULE_1__.InvalidOrder,
                     '51073': _base_errors_js__WEBPACK_IMPORTED_MODULE_1__.InvalidOrder,
                     '51074': _base_errors_js__WEBPACK_IMPORTED_MODULE_1__.InvalidOrder,
@@ -250820,7 +250821,8 @@ class okx extends _abstract_okx_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */
                 request['attachAlgoOrds'] = [attachAlgoOrd];
             }
         }
-        else if (trigger) {
+        // algo order details
+        if (trigger) {
             request['ordType'] = 'trigger';
             request['triggerPx'] = this.priceToPrecision(symbol, triggerPrice);
             request['orderPx'] = isMarketOrder ? '-1' : this.priceToPrecision(symbol, price);
@@ -336705,7 +336707,6 @@ class okx extends _okx_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .A {
     /**
      * @method
      * @name okx#watchTrades
-     * @name okx#watchTradesForSymbols
      * @see https://www.okx.com/docs-v5/en/#order-book-trading-market-data-ws-trades-channel
      * @see https://www.okx.com/docs-v5/en/#order-book-trading-market-data-ws-all-trades-channel
      * @description get the list of most recent trades for a particular symbol
