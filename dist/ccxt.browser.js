@@ -66486,6 +66486,14 @@ class bithumb extends _abstract_bithumb_js__WEBPACK_IMPORTED_MODULE_0__/* ["defa
                             },
                         },
                     },
+                    'USDT': {
+                        'limits': {
+                            'cost': {
+                                'min': undefined,
+                                'max': undefined,
+                            },
+                        },
+                    },
                 },
             },
             'commonCurrencies': {
